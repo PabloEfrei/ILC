@@ -35,11 +35,11 @@ B -  **Through Docker Hub: [Docker Hub repository](https://hub.docker.com/reposi
 1. ***Pull the image:***
    ```bash
    docker pull pablo1205/ilc
-
+    ```
 2. ***Run the Docker Container:***
     ```bash
     docker run -p 5000:5000 pablo1205/ilc
-
+    ```
 
 3. **Access the Application:**
     Open your web browser and go to http://127.0.0.1:5000.
