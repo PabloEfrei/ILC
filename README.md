@@ -15,7 +15,7 @@ Follow these steps to run the Intelligent Landscape Classifier using Docker:
 
 2. **Download and run:**
 
-A -  **Through Git Hub:**
+A -  **Through Git Hub: [GitHub repository](https://github.com/PabloEfrei/ILC)**
 
 1. ***Clone the Repository:***
    ```bash
@@ -30,7 +30,7 @@ A -  **Through Git Hub:**
     ```bash
     docker run -p 5000:5000 ilc
 
-B -  **Through Docker Hub:**
+B -  **Through Docker Hub: [Docker Hub repository](https://hub.docker.com/repository/docker/pablo1205/ilc/general)**
 
 1. ***Pull the image:***
    ```bash
