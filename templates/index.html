@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Intelligent Landscape Classifier</title>
+</head>
+<body>
+
+        <h1>Intelligent Landscape Classifier</h1>
+        <form id="upload-form" enctype="multipart/form-data">
+            <!-- Input for choosing an image -->
+            <input type="file" name="image" id="image-input" accept="image/*" required>
+            <br>
+            <br>
+            <button type="button" onclick="uploadImage()">Classify Landscape</button>
+        </form>
+        <br>
+        <br>
+        <!-- Image Preview Container -->
+        <div id="image-preview-container">
+            <img id="image-preview" src="#" alt="Image Preview">
+        </div>
+        <!-- Display Results -->
+        <div id="result"></div>
+
+
+    <script>
+        // JavaScript to display image preview
+        const imageInput = document.getElementById('image-input');
+        const imagePreview = document.getElementById('image-preview');
+
+        imageInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        function uploadImage() {
+            const form = document.getElementById('upload-form');
+            const formData = new FormData(form);
+
+            const imageInput = document.getElementById('image-input');
+            const imagePreview = document.getElementById('image-preview');
+            
+            fetch('/classify', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = `<p>Predicted Class: ${data.predicted_class}</p>
+                                       <p>Class Name: ${data.class_name}</p>`;
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
